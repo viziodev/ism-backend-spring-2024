@@ -1,5 +1,6 @@
 package com.ism.ecom.data.entities;
 
+import com.ism.ecom.security.data.entities.AppRole;
 import com.ism.ecom.security.data.entities.AppUser;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,7 +24,6 @@ public class Client extends AppUser {
     @Embedded
     private Adresse adresse;
     @OneToMany(mappedBy ="client" )
-    List<Commande> commandes = new ArrayList<Commande>();
-
+    private List<Commande> commandes = new ArrayList<Commande>();
 
 }
