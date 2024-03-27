@@ -14,11 +14,11 @@ import java.util.Map;
 
 public interface ClientRestController {
     @GetMapping("/clients")//End Point
-  ResponseEntity<Map<Object, Object>>  listerClient(
+  ResponseEntity<?>  listerClient(
                           @RequestParam(defaultValue = "0") int page,
-                          @RequestParam(defaultValue = "8") int size,
+                          @RequestParam(defaultValue = "5") int size,
                           @RequestParam( defaultValue = "") String keyword
                          );
     @PostMapping("/clients")
-    ResponseEntity<Map<Object, Object>> saveClient(@Valid @RequestBody ClientCreateRequestDto client, BindingResult bindingResult);
+    ResponseEntity<?>  saveClient(@Valid @RequestBody ClientCreateRequestDto client, BindingResult bindingResult);
 }

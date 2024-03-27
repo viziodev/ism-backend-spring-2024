@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -22,11 +24,15 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void addClient(ClientCreateRequestDto dto) {
+    public ClientCreateRequestDto addClient(ClientCreateRequestDto dto) {
         Client entity = dto.toEntity();
-        entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString();
+        entity.setUsername(uuidAsString);
+        entity.setPassword(passwordEncoder.encode("passer"));
         entity.setActive(true);
-        clientRepository.save(entity);
+         clientRepository.save(entity);
+        return ClientCreateRequestDto.toDto(entity);
     }
 
     @Override

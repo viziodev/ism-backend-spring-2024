@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 
 public interface ClientService {
       Page<Client> getAllClientWithPaginateAndFilter(String keyword, Pageable page);
-      void addClient(ClientCreateRequestDto dto);
+      ClientCreateRequestDto addClient(ClientCreateRequestDto dto);
       Client getClientById(Long id);
 }

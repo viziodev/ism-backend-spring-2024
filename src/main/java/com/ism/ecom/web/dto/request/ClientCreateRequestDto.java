@@ -6,16 +6,16 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class ClientCreateRequestDto {
+
      private Long id;
      @NotBlank(message = "Le nom est obligatoire")
      private String nomComplet;
@@ -37,11 +37,20 @@ public class ClientCreateRequestDto {
                 .nomComplet(nomComplet)
                 .telephone(telephone)
                 .build();
-        client.setPassword(password);
-        client.setUsername(username);
+
         return client;
     }
 
-
+    public static ClientCreateRequestDto toDto(Client client){
+        return ClientCreateRequestDto.builder()
+                .id(client.getId())
+                .nomComplet(client.getNomComplet())
+                .telephone(client.getTelephone())
+                .username(client.getUsername())
+                .numVilla(client.getAdresse().getNumVilla())
+                .quartier(client.getAdresse().getQuartier())
+                .ville(client.getAdresse().getVille())
+                .build();
+    }
 
 }
