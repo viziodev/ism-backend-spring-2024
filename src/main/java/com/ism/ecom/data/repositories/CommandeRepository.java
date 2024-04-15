@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CommandeRepository  extends JpaRepository<Commande,Long> {
 
-    Page<Commande> findCommandesByClientIdAndActiveTrue(Long id,Pageable pageable);
-    Page<Commande> findCommandesByActiveTrue(Pageable pageable);
+    Page<Commande> findCommandesByClientIdAndActiveTrueOrderByIdDesc(Long id,Pageable pageable);
+    Page<Commande> findCommandesByActiveTrueOrderByIdDesc(Pageable pageable);
 }

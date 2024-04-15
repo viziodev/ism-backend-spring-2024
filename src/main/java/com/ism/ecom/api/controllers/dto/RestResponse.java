@@ -1,4 +1,4 @@
-package com.ism.ecom.api.utils;
+package com.ism.ecom.api.controllers.dto;
 
 import org.springframework.http.HttpStatus;
 

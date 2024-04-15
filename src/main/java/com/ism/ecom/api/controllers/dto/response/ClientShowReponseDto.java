@@ -1,8 +1,6 @@
-package com.ism.ecom.web.dto.response;
+package com.ism.ecom.api.controllers.dto.response;
 
 import com.ism.ecom.data.entities.Client;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,8 @@
 package com.ism.ecom.api.controllers;
 
+import com.ism.ecom.api.controllers.dto.request.PanierDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -14,4 +13,6 @@ public interface CommandeRestController {
     ResponseEntity<Map<Object, Object>>  listerAllCommandes(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "8") int size);
+    @PostMapping("/commandes")
+    public ResponseEntity<Map<Object, Object>>  saveCommande(@RequestBody PanierDto panier);
 }

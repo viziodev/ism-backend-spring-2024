@@ -11,18 +11,15 @@ import com.ism.ecom.data.repositories.CommandeRepository;
 import com.ism.ecom.data.repositories.LigneCommandeRepository;
 import com.ism.ecom.exceptions.EntityNotFoundException;
 import com.ism.ecom.services.CommandeService;
-import com.ism.ecom.web.dto.request.PanierDto;
+import com.ism.ecom.api.controllers.dto.request.PanierDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,12 +31,12 @@ public class CommandeServiceImpl implements CommandeService {
     private final LigneCommandeRepository ligneCommandeRepository;
     @Override
     public Page<Commande> getCommandeByClientWithPaginate(Long id,int page, int size) {
-        return commandeRepository.findCommandesByClientIdAndActiveTrue(id, PageRequest.of(page, size));
+        return commandeRepository.findCommandesByClientIdAndActiveTrueOrderByIdDesc(id, PageRequest.of(page, size));
     }
 
     @Override
     public Page<Commande> getAllCommande(int page, int size) {
-        return commandeRepository.findCommandesByActiveTrue( PageRequest.of(page, size));
+        return commandeRepository.findCommandesByActiveTrueOrderByIdDesc( PageRequest.of(page, size));
     }
 
 

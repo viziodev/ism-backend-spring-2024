@@ -1,4 +1,4 @@
-package com.ism.ecom.web.dto.request;
+package com.ism.ecom.api.controllers.dto.request;
 
 import com.ism.ecom.data.entities.Adresse;
 import com.ism.ecom.data.entities.Client;

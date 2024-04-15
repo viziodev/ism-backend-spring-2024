@@ -1,17 +1,16 @@
 package com.ism.ecom.api.controllers.impl;
 
 import com.ism.ecom.api.controllers.ClientRestController;
-import com.ism.ecom.api.utils.RestResponse;
+import com.ism.ecom.api.controllers.dto.RestResponse;
 import com.ism.ecom.data.entities.Client;
 import com.ism.ecom.services.ClientService;
-import com.ism.ecom.web.dto.request.ClientCreateRequestDto;
-import com.ism.ecom.web.dto.response.ClientShowReponseDto;
+import com.ism.ecom.api.controllers.dto.request.ClientCreateRequestDto;
+import com.ism.ecom.api.controllers.dto.response.ClientShowReponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,6 +34,18 @@ public class ClientRestControllerImpl implements ClientRestController {
         Page<ClientShowReponseDto> dataDto = clients.map(ClientShowReponseDto::toDo);
         Map<Object, Object>  model= RestResponse.paginateResponse(dataDto.getContent(),new int[dataDto.getTotalPages()],dataDto.getNumber(),dataDto.getTotalElements(),dataDto.getTotalPages(),HttpStatus.OK);
         return new ResponseEntity<>(model, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Map<Object, Object>> listerClientParTelephone(String tel) {
+        Client client = clientService.getClientByTelephone(tel);
+        Map<Object, Object> response;
+        if (client == null){
+            response= RestResponse.response(null,HttpStatus.NO_CONTENT);
+        }else {
+            response= RestResponse.response(ClientShowReponseDto.toDo(client),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override

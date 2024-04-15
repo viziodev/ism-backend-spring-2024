@@ -1,12 +1,11 @@
 package com.ism.ecom.api.controllers.impl;
 
 import com.ism.ecom.api.controllers.CommandeRestController;
-import com.ism.ecom.api.utils.RestResponse;
+import com.ism.ecom.api.controllers.dto.RestResponse;
 import com.ism.ecom.data.entities.Commande;
-import com.ism.ecom.services.ArticleService;
-import com.ism.ecom.services.ClientService;
 import com.ism.ecom.services.CommandeService;
-import com.ism.ecom.web.dto.response.CommandeResponseDto;
+import com.ism.ecom.api.controllers.dto.request.PanierDto;
+import com.ism.ecom.api.controllers.dto.response.CommandeResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -44,5 +43,11 @@ public class CommandeRestControllerImpl implements CommandeRestController {
                 : commandeService.getCommandeByClientWithPaginate(id, page, size);
 
         return  commandes.map(CommandeResponseDto::toDto);
+    }
+
+    @Override
+    public ResponseEntity<Map<Object, Object>> saveCommande(PanierDto panier) {
+        commandeService.saveCommande(panier);
+        return new ResponseEntity<>(RestResponse.response(null,HttpStatus.NO_CONTENT), HttpStatus.OK);
     }
 }

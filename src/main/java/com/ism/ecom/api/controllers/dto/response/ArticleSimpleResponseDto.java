@@ -1,4 +1,4 @@
-package com.ism.ecom.web.dto.response;
+package com.ism.ecom.api.controllers.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

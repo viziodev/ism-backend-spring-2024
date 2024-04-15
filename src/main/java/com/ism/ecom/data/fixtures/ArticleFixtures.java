@@ -31,7 +31,7 @@ public class ArticleFixtures implements CommandLineRunner {
             for (int j = 0; j < 5; j++) {
                 Random random = new Random();
                 int randomNumber = random.nextInt(100) + j;
-                Article article = new Article(String.format("Article %d", randomNumber), 10000.0, 8000.0, false, i * j, "", null);
+                Article article = new Article(String.format("Article%d", randomNumber), 10000.0, 8000.0, false, i * j, "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", null);
                 article.setActive(j%2==0);
                 articleList.add(article);
             }

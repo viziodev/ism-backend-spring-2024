@@ -1,5 +1,6 @@
-package com.ism.ecom.web.dto.request;
+package com.ism.ecom.api.controllers.dto.request;
 
+import com.ism.ecom.data.entities.Article;
 import lombok.*;
 
 import java.util.Objects;
@@ -15,7 +16,19 @@ public class ArticlePanierDto {
     private String libelle;
     private Double montant=0.0;
     private Double quantite;
+    private Double quantiteStock;
     private Double prix;
+
+
+    public static ArticlePanierDto toDto(Article article) {
+         return ArticlePanierDto
+                 .builder()
+                 .idArticle(article.getId())
+                 .libelle(article.getLibelle())
+                 .quantiteStock(Double.valueOf(article.getQteStock()))
+                 .prix(article.getNouveauPrix())
+                 .build();
+    }
 
     public  Double calculNewQte(Double newQte){
          quantite+= newQte;
